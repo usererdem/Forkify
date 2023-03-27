@@ -3,18 +3,10 @@ import recipeView from './views/recipeView.js';
 
 // Polyfilling everything else
 import 'core-js/stable';
-// Polyfilling asyn/await
+// Polyfilling async/await
 import 'regenerator-runtime/runtime';
 
 const recipeContainer = document.querySelector('.recipe');
-
-const timeout = function (s) {
-  return new Promise(function (_, reject) {
-    setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
-    }, s * 1000);
-  });
-};
 
 // https://forkify-api.herokuapp.com/v2
 
@@ -24,7 +16,7 @@ async function controlRecipes() {
     const id = window.location.hash.slice(1);
     console.log(id);
 
-    if(!id) return;
+    if (!id) return;
     recipeView.renderSpinner();
 
     // 1) Loading recipe
@@ -37,7 +29,9 @@ async function controlRecipes() {
   }
 }
 
-['hashchange', 'load'].forEach(ev => window.addEventListener(ev, controlRecipes));
+['hashchange', 'load'].forEach(ev =>
+  window.addEventListener(ev, controlRecipes)
+);
 
 // window.addEventListener('hashchange', controlRecipes)
 // window.addEventListener('load', controlRecipes)
