@@ -1,8 +1,9 @@
 # Meal App Project
 
-This is a meal app project created using Parcel bundler.
+# Structure 
 
-This project follows the Model-View-Controller (MVC) architecture to ensure a separation of concerns and maintain a clear organization of the code.
+1. This is a meal app project created using Parcel bundler.
+2. In this project, we're using both the Model-View-Controller (MVC) architecture and the publisher-subscriber pattern to create a modular and maintainable application.
 
 ## Features
 
