@@ -1,4 +1,4 @@
-## Meal App Project
+# Meal App Project
 
 ## Structure 
 
