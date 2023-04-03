@@ -43,7 +43,7 @@ async function controlSearchResults() {
 
     // 3) Render results
     // resultsView.render(model.state.search.results);
-    resultsView.render(model.getSearchResultsPage(6));
+    resultsView.render(model.getSearchResultsPage());
 
     // 4) Render initial pagination buttons
     paginationView.render(model.state.search);
@@ -52,9 +52,19 @@ async function controlSearchResults() {
   }
 }
 
+function controlPagination(goToPage) {
+  // 1) Render NEW results
+  // resultsView.render(model.state.search.results);
+  resultsView.render(model.getSearchResultsPage(goToPage));
+
+  // 2) Render NEW pagination buttons
+  paginationView.render(model.state.search);
+}
+
 function init() {
   recipeView.addHandleRender(controlRecipes);
   searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
 }
 init();
 // window.addEventListener('hashchange', controlRecipes)

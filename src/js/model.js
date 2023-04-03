@@ -29,7 +29,6 @@ export async function loadRecipe(id) {
       cookingTime: recipe.cooking_time,
       ingrediendts: recipe.ingredients,
     };
-    console.log(state.recipe);
   } catch (err) {
     // Temp error handling
     console.error(err);
