@@ -12,12 +12,13 @@ export const state = {
     page: 1,
     resultsPerPage: RES_PER_PAGE,
   },
+  bookmarks: [],
 };
 
 export async function loadRecipe(id) {
   try {
     const data = await getJSON(`${API_URL}${id}`);
-    
+
     const { recipe } = data.data;
     state.recipe = {
       id: recipe.id,
@@ -30,7 +31,6 @@ export async function loadRecipe(id) {
       ingrediendts: recipe.ingredients,
     };
     console.log(state.recipe);
-   
   } catch (err) {
     // Temp error handling
     console.error(err);
@@ -74,4 +74,12 @@ export function updateServings(newServings) {
   });
 
   state.recipe.servings = newServings;
+}
+
+export function addBookmark(recipe) {
+  // Add bookmark
+  state.bookmarks.push(recipe);
+
+  // Mark current recipe as bookmark
+  if(recipe.id === state.recipe.id) state.recipe.bookmarked = true;
 }
