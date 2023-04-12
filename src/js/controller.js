@@ -94,10 +94,14 @@ function controlBookmarks() {
   bookmarksView.render(model.state.bookmarks);
 }
 
-function controlAddRecipe(newRecipe) {
-  console.log(newRecipe);
-
-  // Upload the new recipe data
+async function controlAddRecipe(newRecipe) {
+  try {
+    // Upload the new recipe data
+    await model.uploadRecipe(newRecipe);
+  } catch(err) {
+    console.error('❌❌❌', err);
+    addRecipeView.renderError(err.message);
+  }
 }
 
 function init() {
