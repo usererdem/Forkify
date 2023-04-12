@@ -33,7 +33,6 @@ async function controlRecipes() {
 
     // 3) Rendering recipe
     recipeView.render(model.state.recipe);
-
   } catch (err) {
     recipeView.renderError();
     console.error(err);
@@ -95,6 +94,12 @@ function controlBookmarks() {
   bookmarksView.render(model.state.bookmarks);
 }
 
+function controlAddRecipe(newRecipe) {
+  console.log(newRecipe);
+
+  // Upload the new recipe data
+}
+
 function init() {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
@@ -102,6 +107,7 @@ function init() {
   recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
 }
 init();
 // window.addEventListener('hashchange', controlRecipes)
