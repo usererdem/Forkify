@@ -105,3 +105,14 @@ export function deleteBookmark(id) {
 
   persistBookmarks();
 }
+
+function init() {
+  const storage = localStorage.getItem('bookmarks');
+  if (storage) state.bookmarks = JSON.parse(storage);
+}
+init();
+
+function clearBookmarks() {
+  localStorage.clear('bookmarks');
+}
+// clearBookmarks();

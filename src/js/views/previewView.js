@@ -3,7 +3,6 @@ import icons from 'url:../../img/icons.svg';
 
 export default class PreviewView extends View {
   _generateMarkup() {
-    console.log(this._data);
     return this._data.map(this._generateMarkupPreview).join('');
   }
 
