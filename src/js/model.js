@@ -34,7 +34,7 @@ export async function loadRecipe(id) {
     if (state.bookmarks.some(bookmark => bookmark.id === id))
       state.recipe.bookmarked = true;
     else state.recipe.bookmarked = false;
-    //console.log(state.recipe);
+    console.log(state.recipe);
   } catch (err) {
     // Temp error handling
     console.error(err);
@@ -115,3 +115,22 @@ function clearBookmarks() {
   localStorage.clear('bookmarks');
 }
 // clearBookmarks();
+
+export async function uploadRecipe(newRecipe) {
+  try {
+    const ingrediendts = Object.entries(newRecipe)
+    .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+    .map(ing => {
+      const ingArr = ing[1].replaceAll(' ', '').split(',');
+      if (ingArr.length !== 3)
+        throw new Error(
+          'Wrong ingredient format! Please use the correct format :)'
+        );
+      const [quantity, unit, description] = ingArr;
+      return { quantity: quantity ? +quantity : null, unit, description };
+    });
+  console.log(ingrediendts);
+  } catch(err) {
+    throw err;
+  }
+}
