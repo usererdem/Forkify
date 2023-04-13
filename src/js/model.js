@@ -16,6 +16,21 @@ export const state = {
   bookmarks: [],
 };
 
+/**
+ * Creates a recipe object from the provided data
+ * @param {Object} data - The data object containing recipe information
+ * @returns {Object} - The recipe object with the following properties:
+ * @property {number} id - The ID of the recipe
+ * @property {string} title - The title of the recipe
+ * @property {string} publisher - The publisher of the recipe
+ * @property {string} sourceUrl - The source URL of the recipe
+ * @property {string} image - The URL of the recipe's image
+ * @property {number} servings - The number of servings for the recipe
+ * @property {number} cookingTime - The cooking time in minutes for the recipe
+ * @property {Array} ingredients - An array of ingredient objects for the recipe
+ * @property {string} key - Optional key for the recipe if it exists
+ * @memberof module:model
+ */
 function createRecipeObject(data) {
   const { recipe } = data.data;
   return {
@@ -31,6 +46,14 @@ function createRecipeObject(data) {
   };
 }
 
+/**
+ * Loads a recipe from the API and creates a recipe object.
+ * @async
+ * @param {string} id - The id of the recipe to be loaded.
+ * @throws {Error} If an error occurs while loading the recipe.
+ * @returns {Promise<void>} A Promise that resolves with no value once the recipe has been loaded and created.
+ * @memberof module:model
+ */
 export async function loadRecipe(id) {
   try {
     const data = await AJAX(`${API_URL}${id}?key=${KEY}`);
@@ -47,6 +70,14 @@ export async function loadRecipe(id) {
   }
 }
 
+/**
+ * Loads search results based on the given query.
+ * @async
+ * @param {string} query - The search query.
+ * @throws {Error} When an error occurs while fetching data.
+ * @returns {Promise<void>} A Promise that resolves after the search results have been loaded and stored in the state.
+ * @memberof module:model
+ */
 export async function loadSearchResults(query) {
   try {
     state.search.query = query;
@@ -68,6 +99,12 @@ export async function loadSearchResults(query) {
   }
 }
 
+/**
+ * Returns a specified page of search results based on the current page number
+ * and the number of results per page stored in the state.
+ * @param {number} [page=1] - The page number to retrieve, defaults to 1.
+ * @returns {Object[]} - An array of search result objects representing the requested page.
+ */
 export function getSearchResultsPage(page = 1) {
   state.search.page = page;
 
@@ -77,6 +114,11 @@ export function getSearchResultsPage(page = 1) {
   return state.search.results.slice(start, end);
 }
 
+/**
+ * Updates the number of servings in the current recipe object and adjusts ingredient quantities accordingly.
+ * @param {number} newServings - The new number of servings to update the recipe with.
+ * @returns {void}
+ */
 export function updateServings(newServings) {
   state.recipe.ingrediendts.forEach(ing => {
     ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
@@ -86,10 +128,18 @@ export function updateServings(newServings) {
   state.recipe.servings = newServings;
 }
 
+/**
+ * Persists the bookmarks in the localStorage by converting the state.bookmarks array to JSON string and saving it under the key 'bookmarks'
+ */
 function persistBookmarks() {
   localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
 }
 
+/**
+ * Add a recipe to bookmarks.
+ * @param {Object} recipe - The recipe to be added to bookmarks.
+ * @returns {undefined}
+ */
 export function addBookmark(recipe) {
   // Add bookmark
   state.bookmarks.push(recipe);
@@ -100,6 +150,11 @@ export function addBookmark(recipe) {
   persistBookmarks();
 }
 
+/**
+ * Deletes a bookmark with the given ID from the state.bookmarks array and updates the persisted bookmarks in localStorage.
+ * @param {string} id - The ID of the bookmark to be deleted.
+ * @returns {void}
+ */
 export function deleteBookmark(id) {
   // Delete bookmark from bookmarks array
   const index = state.bookmarks.findIndex(el => el.id === id);
@@ -121,6 +176,14 @@ function clearBookmarks() {
   localStorage.clear('bookmarks');
 }
 //clearBookmarks();
+
+/**
+ * Uploads a new recipe to the API and adds it to the state and bookmarks.
+ *
+ * @param {Object} newRecipe - The new recipe object to be uploaded.
+ * @throws {Error} Will throw an error if an ingredient is in the wrong format.
+ * @returns {void}
+ */
 
 export async function uploadRecipe(newRecipe) {
   try {
