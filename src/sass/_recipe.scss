@@ -177,3 +177,49 @@
     font-weight: 700;
   }
 }
+
+@media only screen and (max-width: $bp-small) {
+  .recipe {
+    ///////////
+    // DETAILS
+    &__details {
+      position: relative;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      align-items: center;
+      padding: 7.5rem 1rem 3.5rem 1rem;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    &__info {
+      grid-row: 2;
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+
+    &__user-generated {
+      position: absolute;
+      top: 2.3rem;
+      right: 5rem;
+    }
+
+    &__btn-bookmark {
+      position: absolute;
+      top: 2rem;
+      right: 1rem;
+    }
+
+    ///////////
+    // INGREDIENTS
+    &__ingredients {
+      padding: 5rem 2.5rem;
+      line-height: 1.3;
+    }
+
+    &__ingredient-list {
+      gap: 2.5rem 2.5rem;
+    }
+  }
+}

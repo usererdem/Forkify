@@ -100,7 +100,7 @@ changes to the URL hash or when the page is loaded.
             <use href="${icons}#icon-user"></use>
           </svg>
         </div>
-        <button class="btn--round btn--bookmark">
+        <button class="btn--round btn--bookmark recipe__btn-bookmark">
           <svg class="">
             <use href="${icons}#icon-bookmark${
       this._data.bookmarked ? '-fill' : ''

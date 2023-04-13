@@ -40,3 +40,13 @@
     color: $color-grey-dark-2;
   }
 }
+
+@media only screen and (max-width: $bp-medium) {
+  .search-results {
+    padding: 2rem 0;
+  }
+
+  .copyright {
+    display: none;
+  }
+}
