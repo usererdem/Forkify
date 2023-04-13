@@ -9,6 +9,15 @@ const timeout = function (s) {
   });
 };
 
+/**
+ * Asynchronous function to make HTTP requests with `fetch` method.
+ * If `uploadData` is provided, it will make a POST request with JSON payload.
+ * If request takes longer than `TIMEOUT_SEC`, it will throw an error.
+ * @param {string} url - The URL for the request.
+ * @param {Object} [uploadData] - The data to be uploaded as JSON payload for POST request.
+ * @throws {Error} If the request fails or takes longer than `TIMEOUT_SEC` seconds.
+ * @returns {Promise<Object>} A Promise that resolves to a JSON object with the response data. 
+ */
 export async function AJAX(url, uploadData = undefined) {
   try {
     const fetchPro = uploadData

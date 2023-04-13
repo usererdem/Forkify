@@ -17,6 +17,10 @@ import { async } from 'regenerator-runtime';
 //   module.hot.accept();
 // }
 
+/**
+ * Controls the flow of the application when a recipe is selected. Updates the views, loads and renders the selected recipe.
+ * @returns {Promise<void>}
+ */
 async function controlRecipes() {
   try {
     const id = window.location.hash.slice(1);
@@ -40,6 +44,14 @@ async function controlRecipes() {
   }
 }
 
+/**
+ * Controls the flow of the application when a search query is submitted. Updates the views, loads and renders the search results.
+ * @returns {Promise<void>}
+ * @memberof module:js/controller
+ * @async
+ * @function controlSearchResults
+ * @throws {Error} If an error occurs while rendering the search results.
+ */
 async function controlSearchResults() {
   try {
     resultsView.renderSpinner();
@@ -126,6 +138,9 @@ async function controlAddRecipe(newRecipe) {
   }
 }
 
+/**
+ * Initializes the application by adding event handlers for rendering bookmarks, recipes, updating servings, adding bookmarks, searching, pagination, and uploading new recipes.
+ */
 function init() {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);

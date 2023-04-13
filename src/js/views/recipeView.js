@@ -9,10 +9,19 @@ class RecipeView extends View {
   _errorMessage = 'We could not find that recipe. Please try another one!';
   _message = '';
 
+  /**
+   * Add event listeners to the window object to handle rendering of the view based on
+changes to the URL hash or when the page is loaded.
+   * @param {function} handler - The function to handle rendering of the view.
+   */
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
 
+  /**
+   * Add a click event listener to the parent element of the recipe view, and delegate the event to the update servings button.
+   * @param {function} handler - The function that updates the servings of the recipe.
+   */
   addHandlerUpdateServings(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--update-servings');
@@ -22,6 +31,10 @@ class RecipeView extends View {
     });
   }
 
+  /**
+   * Add an event listener to the parent element that listens for a click on a bookmark button
+   * @param {function} handler - The function to handle the bookmark button click event
+   */
   addHandlerAddBookmark(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--bookmark');
@@ -30,6 +43,10 @@ class RecipeView extends View {
     });
   }
 
+  /**
+   * Generates the markup for the recipe details view
+   * @return {string} The HTML markup for the recipe details view 
+   */
   _generateMarkup() {
     return `
       <figure class="recipe__fig">

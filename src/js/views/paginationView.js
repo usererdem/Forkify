@@ -4,6 +4,10 @@ import icons from 'url:../../img/icons.svg';
 class PaginationView extends View {
   _parentElement = document.querySelector('.pagination');
 
+  /**
+   * Adds an event listener to the parent element to handle clicks on child elements with class 'btn--inline'
+   * @param {function} handler - The function to be called when a button is clicked. Accepts the page number to navigate to as an argument.
+   */
   addHandlerClick(handler) {
     this._parentElement.addEventListener('click', function(e) {
       const btn = e.target.closest('.btn--inline');
@@ -16,6 +20,10 @@ class PaginationView extends View {
     })
   }
 
+  /**
+   * Generates the markup for pagination buttons based on current page number and total number of pages.
+   * @returns {string} The markup for the pagination buttons.
+   */
   _generateMarkup() {
     const curPage = this._data.page;
     const numPages = Math.ceil(
