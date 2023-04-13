@@ -211,3 +211,17 @@
     font-weight: 600;
   }
 }
+
+@media only screen and (max-width: $bp-medium) {
+  .btn--tiny {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+}
+
+@media only screen and (max-width: $bp-small) {
+  .btn--tiny {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+}
