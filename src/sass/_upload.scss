@@ -97,3 +97,34 @@
     justify-self: center;
   }
 }
+
+@media only screen and (max-width: $bp-medium) {
+  .add-recipe-window {
+    top: 5%;
+    transform: translate(-50%, 0);
+    width: 90%;
+
+    padding: 2rem 4rem;
+  
+    .btn--close-modal {
+      top: 0.35rem;
+      right: 2rem;
+      font-size: 4rem;
+    }
+  }
+
+  .upload {
+    display: block;
+    
+    &__column {
+      gap: 0.5rem;
+    }
+    &__heading {
+      margin-bottom: 0.2rem;
+    }
+  
+    &__btn {
+      margin: 2rem auto 0 auto;
+    }
+  }
+}
