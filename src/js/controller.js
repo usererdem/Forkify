@@ -13,10 +13,6 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime';
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
-
 /**
  * Controls the flow of the application when a recipe is selected. Updates the views, loads and renders the selected recipe.
  * @returns {Promise<void>}
