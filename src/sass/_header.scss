@@ -19,6 +19,7 @@
   align-items: center;
   padding-left: 3rem;
   transition: all 0.3s;
+  touch-action: manipulation;
 
   &:focus-within {
     transform: translateY(-2px);
