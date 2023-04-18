@@ -32,6 +32,8 @@
     color: inherit;
     font-size: 1.7rem;
     width: 30rem;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 
     &:focus {
       outline: none;
