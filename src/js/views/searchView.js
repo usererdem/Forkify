@@ -12,6 +12,14 @@ class SearchView {
   }
 
   addHandlerSearch(handler) {
+    // Touch zoom fix on mobile device
+    this._parentEl.addEventListener('touchstart', function(event) {
+      event.preventDefault();
+    }, { passive: false });
+    this._parentEl.addEventListener('touchmove', function(event) {
+      event.preventDefault();
+    }, { passive: false });
+
     this._parentEl.addEventListener('submit', function(e) {
       e.preventDefault();
       handler();
